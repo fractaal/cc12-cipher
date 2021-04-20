@@ -1,15 +1,20 @@
 
 public class Caesar implements ICipherAlgorithm {
   static String name = "Caesar Cipher";
-  static String[] cipherInputs = {"shift"};
+  static String[] cipherInputs = {"Letter Shift"};
 
   public String[] getCipherInputs() {
     return cipherInputs;
   }
 
+  public String getName() {
+    return name;
+  }
+
   public String encrypt(String plaintext, String ...inputs) {
     String pt = plaintext;
     Integer index = Integer.valueOf(inputs[0]);
+    index = (index < 0) ? (26 - Math.abs(index)%26) %26 : (index % 26);
 
     String ct = "";
     char letters;
@@ -39,6 +44,7 @@ public class Caesar implements ICipherAlgorithm {
   public String decrypt(String ciphertext, String... inputs) {
     String ct = ciphertext;
     Integer index = Integer.valueOf(inputs[0]);
+    index = (index < 0) ? (26 - Math.abs(index)%26) %26 : (index % 26);
     String decrypt = "";
 
     for (int i = 0; i < ct.length(); i++) {

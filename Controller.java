@@ -12,9 +12,10 @@ public class Controller implements IController {
   private static Map<String, ICipherAlgorithm> algorithms = new HashMap<String, ICipherAlgorithm>();
 
   Controller() {
-    algorithms.put(Caesar.name, new Caesar());
-    algorithms.put("Caesar 2", new Caesar());
-    algorithms.put("otoen onteo oten onte", new Caesar());
+    Caesar caesar = new Caesar();
+    Transposition transposition = new Transposition();
+    algorithms.put(caesar.getName(), caesar);
+    algorithms.put(transposition.getName(), transposition);
   }
 
   public String[] getAvailableCipherAlgorithms() {
