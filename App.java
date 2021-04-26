@@ -157,6 +157,13 @@ public class App {
         controller.setSelectedCipherInput(cipherOptionsValue.getText());
       }
     });
+    cipherOptionsSelect.addItemListener(new ItemListener() {
+      @Override
+      public void itemStateChanged(ItemEvent e) {
+        controller.selectCipherInput((String) e.getItem());
+        cipherOptionsValue.setText(controller.getSelectedCipherInput());
+      }
+    });
     cipherOptionsPanel.add(cipherOptionsLabel);
     cipherOptionsPanel.add(cipherOptionsSelect);
     cipherOptionsPanel.add(cipherOptionsValue);

@@ -52,13 +52,18 @@ public class Controller implements IController {
   }
 
   public void selectCipherInput(String option) {
-    selectedCipherInput = option;
+    for (int i = 0; i < cipherInputs[0].length; i++) {
+      if (cipherInputs[0][i] == option) {
+        selectedCipherInput = option;
+        return;
+      }
+    }
+    System.out.println("WRN: tried to select nonexistent cipher input");
   }
 
   public String getSelectedCipherInput() {
     return cipherInputs[1][indexOf(cipherInputs[0], selectedCipherInput)];
   }
-
   public void setSelectedCipherInput(String value) {
     cipherInputs[1][indexOf(cipherInputs[0], selectedCipherInput)] = value;
   }
