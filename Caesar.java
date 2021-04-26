@@ -1,7 +1,7 @@
 
 public class Caesar implements ICipherAlgorithm {
   static String name = "Caesar Cipher";
-  static String[] cipherInputs = {"Letter Shift"}; //this a comment
+  static String[] cipherInputs = {"Letter Shift"}; 
 
   public String[] getCipherInputs() {
     return cipherInputs;
