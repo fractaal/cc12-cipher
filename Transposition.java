@@ -33,7 +33,7 @@ public class Transposition implements ICipherAlgorithm {
     
     for (int i = 0; i < plaintext.length(); i++) {
       if (plaintext.charAt(i) <= 'z' && plaintext.charAt(i) >= 'a') {
-        System.out.println(plaintext.charAt(i) + " is a letter!");
+        // System.out.println(plaintext.charAt(i) + " is a letter!");
         trimmedPlaintext.add(plaintext.charAt(i));
       }
     }  
@@ -41,8 +41,8 @@ public class Transposition implements ICipherAlgorithm {
     char[][] output = new char[(int) Math.ceil(trimmedPlaintext.size()/intKey.length) + 1][intKey.length];
 
 
-    System.out.println(trimmedPlaintext.size() + " / " + intKey.length);
-    System.out.println("x: " + output[0].length + ", y: " + output.length);
+    // System.out.println(trimmedPlaintext.size() + " / " + intKey.length);
+    // System.out.println("x: " + output[0].length + ", y: " + output.length);
 
     int idx = 0;
     for (int x = 0; x < output.length; x++) {

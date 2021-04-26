@@ -93,7 +93,7 @@ public class App {
     openFileButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        var fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(frame);
         if (result == JFileChooser.APPROVE_OPTION) {
           File selectedFile = fileChooser.getSelectedFile();
@@ -108,7 +108,7 @@ public class App {
 
           BufferedReader bufferedReader;
           try {
-            var reader = new FileReader(selectedFile);
+            FileReader reader = new FileReader(selectedFile);
             bufferedReader = new BufferedReader(reader);
             String all = "";
             String currentLine = "";

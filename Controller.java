@@ -14,8 +14,12 @@ public class Controller implements IController {
   Controller() {
     Caesar caesar = new Caesar();
     Transposition transposition = new Transposition();
+    Vigenere vigenere = new Vigenere();
+
     algorithms.put(caesar.getName(), caesar);
     algorithms.put(transposition.getName(), transposition);
+    algorithms.put(vigenere.getName(), vigenere);
+
   }
 
   public String[] getAvailableCipherAlgorithms() {
