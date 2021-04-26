@@ -24,17 +24,17 @@ public class Caesar implements ICipherAlgorithm {
       if (letters >= 'a' && letters <= 'z') {
           letters = (char) (letters + index);
           if(letters > 'z'){
-              letters = (char) (letters + 'a' - 'z' - 1);
+            letters = (char) (letters + 'a' - 'z' - 1);
           }
           ct += letters;
       } else if (letters >= 'A' && letters <= 'Z') {
           letters = (char) (letters + index);
           if (letters > 'Z'){
-              letters = (char) (letters + 'A' - 'Z' - 1);
+            letters = (char) (letters + 'A' - 'Z' - 1);
           }
           ct += letters;
       } else {
-          ct += letters;
+        ct += letters;
       }
     }
     return ct;
@@ -51,13 +51,13 @@ public class Caesar implements ICipherAlgorithm {
       if (letters >= 'a' && letters <= 'z') {
           letters = (char) (letters - index);
           if (letters < 'a') {
-              letters = (char) (letters-'a'+'z'+1);
+            letters = (char) (letters-'a'+'z'+1);
           }
           decrypt += letters;
       } else if (letters >= 'A' && letters <= 'Z') {
           letters = (char) (letters - index);
           if (letters < 'A') {
-              letters = (char) (letters-'A'+'Z'+1);
+            letters = (char) (letters-'A'+'Z'+1);
           }
           decrypt += letters;
       } else { 
