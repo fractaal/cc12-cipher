@@ -1,8 +1,12 @@
 import java.awt.event.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.nio.file.Files;
+import java.util.Arrays;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -36,6 +40,7 @@ public class App {
   static JPanel buttonsPanel;
   static JButton encryptButton;
   static JButton decryptButton;
+  static JButton saveButton;
 
   public static void main(String[] args) throws Exception {
     try {
@@ -194,6 +199,7 @@ public class App {
     buttonsPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
     encryptButton = new JButton("Encrypt");
     decryptButton = new JButton("Decrypt");
+    saveButton = new JButton("Save File...");
 
     encryptButton.addActionListener(new ActionListener() {
       @Override
@@ -209,8 +215,39 @@ public class App {
       }
     });
 
+    saveButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(frame);
+        if (result == fileChooser.APPROVE_OPTION) {
+          try {
+            BufferedWriter bWriter = new BufferedWriter(new FileWriter(fileChooser.getSelectedFile()));
+            String[] lines = outputTextField.getText().split("\\r?\\n");
+            for (String line : lines) { 
+              bWriter.write(line);
+              bWriter.newLine(); 
+            }
+            bWriter.close();
+            System.out.println("Wrote " + Arrays.toString(lines) + " (" + lines.length + ") lines to " + fileChooser.getSelectedFile().getAbsolutePath());
+          } catch (Exception err) {
+            JOptionPane.showMessageDialog(
+              null, 
+              "An error occurred while trying to save the file: " + err.getMessage(), 
+              "Error saving file", 
+              JOptionPane.ERROR_MESSAGE
+              );
+          }
+
+        }
+      }
+    });
+
+    
+
     buttonsPanel.add(encryptButton);
     buttonsPanel.add(decryptButton);
+    buttonsPanel.add(saveButton);
 
     // Adding all these things to main panel
     panel.add(cipherSelectPanel);
