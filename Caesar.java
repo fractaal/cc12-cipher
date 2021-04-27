@@ -1,7 +1,7 @@
 // class containing the Algorithm for the Caesar Cipher
 /** The Caesar Cipher is one of the simplest and most widely known encryption techniques.
-*  It is a type of substitution cipher, which each letter in plaintext
-*  is replaced by a letter some fixed number of positions down the alphabet.*/
+* It is a type of substitution cipher, which each letter in plaintext
+* is replaced by a letter some fixed number of positions down the alphabet.*/
  
 public class Caesar implements ICipherAlgorithm {
   static String name = "Caesar Cipher";
