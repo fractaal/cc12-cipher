@@ -1,3 +1,7 @@
+/**
+ * Interface for the Controller class. By creating an interface for the Controller class,
+ * we are able to create multiple kinds of controllers for different contexts, if need be.
+ */
 public interface IController {
   public String[] getAvailableCipherAlgorithms();
   public void setCipherAlgorithm(String cipherAlgorithmName);

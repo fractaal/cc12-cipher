@@ -1,3 +1,10 @@
+/**
+ * The App (main) class. Manages UI elements and dispatches actions to 
+ * a controller class which handles the underlying business logic. 
+ * This class only serves as a view layer and only provides information
+ * and dispatches actions.
+ */
+
 import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,7 +13,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.Arrays;
-
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -43,6 +49,7 @@ public class App {
   static JButton saveButton;
 
   public static void main(String[] args) throws Exception {
+    // Attempt to set look and feel of UI to Windows style if present
     try {
       UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
     } catch (Exception e) {
@@ -52,30 +59,30 @@ public class App {
     createUI();
   }
 
+  // Method that calls the controller to set the selected cipher algorithm, as well as update any related UI elements.
   static void UIChangeCipherAlgorithm(String name) {
-    controller.setCipherAlgorithm(name);
+    controller.setCipherAlgorithm(name); // Call the controller 
     cipherOptionsSelect.removeAllItems();
     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(controller.getCipherInputs());
     cipherOptionsSelect.setModel(model);
     cipherOptionsValue.setText(controller.getSelectedCipherInput());
   }
 
+  // A little helper method we use to check whether file is binary/text to display warning msg if not text.
   static boolean isTextFile(File f) throws Exception {
         String type = Files.probeContentType(f.toPath());
-        if (type == null) {
-            //type couldn't be determined, assume binary
+        if (type == null) { // Type can't be determined. Assume not text file.
             return false;
-        } else if (type.startsWith("text")) {
+        } else if (type.startsWith("text")) { // Type is text file.
             return true;
-        } else {
-            //type isn't text
+        } else { // Type is not a text file. 
             return false;
         }
     }
-
+  
+    // This method creates all the actual objects that fill in the class fields that were defined previously.
   static void createUI() throws Exception {
-    // UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-
+    // Window
     frame = new JFrame();
     panel = new JPanel();
     frame.setTitle(appName);
@@ -95,6 +102,8 @@ public class App {
         }
       }
     });
+
+    // Handles opening of files.
     openFileButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -111,6 +120,7 @@ public class App {
             JOptionPane.showMessageDialog(null, appName + " can't determine if " + selectedFile.getName() + " is not a text file. It most likely won't display properly below, and some enciphering algorithms may fail to work.\nError: " + ex.getMessage());
           }
 
+          // Goes over the entire file line by line and outputs it to the input text field.
           BufferedReader bufferedReader;
           try {
             FileReader reader = new FileReader(selectedFile);
@@ -201,6 +211,7 @@ public class App {
     decryptButton = new JButton("Decrypt");
     saveButton = new JButton("Save File...");
 
+    // Dispatch encrypt action to controller
     encryptButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -208,12 +219,15 @@ public class App {
       }
     });
 
+    // Dispatch decrypt action to controller
     decryptButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         outputTextField.setText(controller.decrypt(inputTextField.getText()));
       }
     });
+
+    // Handles saving of files
 
     saveButton.addActionListener(new ActionListener() {
       @Override
@@ -244,7 +258,6 @@ public class App {
     });
 
     
-
     buttonsPanel.add(encryptButton);
     buttonsPanel.add(decryptButton);
     buttonsPanel.add(saveButton);

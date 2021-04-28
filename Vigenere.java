@@ -16,6 +16,11 @@ public class Vigenere implements ICipherAlgorithm {
     String key = inputs[0].toUpperCase();
     plaintext = plaintext.toUpperCase();
 
+    /**
+     * Vigenere is just like Caesar, except letter shift depends on the position
+     * of the current letter of the key in the alphabet. Shift changes every
+     * letter depending on the key. Decryption is the same, just backwards.
+     */
     String ciphertext = "";
     int keyIndex = 0;
     int plaintextIndex = 0;

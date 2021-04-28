@@ -7,11 +7,16 @@ public class Controller implements IController {
   private static String selectedCipherAlgorithm = "";
   private static String selectedCipherInput = "";
 
+  /**
+   * cipherInputs is a 2d array that holds possible cipher inputs to pass in.
+   * The first row holds the cipher input names e.g. "Key", "Shift", etc.
+   * The second row holds the actual values these inputs have e.g. "ZEBRAS", "-24"
+   */
   private static String[][] cipherInputs = new String[][] {{}, {}};
-  // private static Map<String, String> cipherInputs = new HashMap<String, String>();
   private static Map<String, ICipherAlgorithm> algorithms = new HashMap<String, ICipherAlgorithm>();
 
   Controller() {
+    // Initialize here the enciphering algorithms this program can use. Put it in a Map
     Caesar caesar = new Caesar();
     Transposition transposition = new Transposition();
     Vigenere vigenere = new Vigenere();
